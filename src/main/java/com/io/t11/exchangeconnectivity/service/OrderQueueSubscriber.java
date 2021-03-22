@@ -18,7 +18,7 @@ public class OrderQueueSubscriber implements CommandLineRunner {
     @Autowired
     private Environment env;
 
-    private JedisPool jedisPool = new JedisPool(env.getProperty("spring.redis.host"));
+    private JedisPool jedisPool = new JedisPool(env.getProperty("spring.redis.host", "redis-24456-0.cloudclusters.net"));
     private static final String QUEUE = "orderQueue";
     private static final int TIMEOUT = 0;
 
