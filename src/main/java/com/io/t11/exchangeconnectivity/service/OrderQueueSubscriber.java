@@ -41,7 +41,6 @@ public class OrderQueueSubscriber implements CommandLineRunner {
     }
 
     private OrderDto convertToOrderDto(List<String> messages) {
-        JSONOb
         return new OrderDto();
     }
 }
