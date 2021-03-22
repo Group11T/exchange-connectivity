@@ -1,19 +1,10 @@
 package com.io.t11.exchangeconnectivity.dto;
 
 public class OrderDto {
-<<<<<<< HEAD
 
-    private String product;
-
-    private int quantity;
-
-    private double price;
-
-=======
     private String product;
     private int quantity;
     private double price;
->>>>>>> origin/master
     private String side;
 
     public String getProduct() {
@@ -50,11 +41,7 @@ public class OrderDto {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
         return "OrderDto{" +
-=======
-        return "OrderModel{" +
->>>>>>> origin/master
                 "product='" + product + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +

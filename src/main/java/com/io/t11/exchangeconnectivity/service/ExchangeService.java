@@ -1,9 +1,10 @@
 package com.io.t11.exchangeconnectivity.service;
 
-import com.io.t11.exchangeconnectivity.dao.OrderRepository;
+import com.io.t11.exchangeconnectivity.dao.CreatedOrderRepository;
+import com.io.t11.exchangeconnectivity.dto.CreatedOrder;
 import com.io.t11.exchangeconnectivity.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,20 +12,19 @@ import org.springframework.web.client.RestTemplate;
 public class ExchangeService {
 
     @Autowired
-    private final OrderRepository orderRepository;
+    private final CreatedOrderRepository orderRepository;
 
     RestTemplate restTemplate = new RestTemplate();
 
+    private String exchangeUrl="/a";
+
     @Autowired
-    public ExchangeService(OrderRepository orderRepository) {
+    public ExchangeService(CreatedOrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
-    public OrderDto callMallon(OrderDto orderDto) {
-        System.out.println(orderDto);
-
-        orderDto = restTemplate.postForObject("", HttpMethod.POST, OrderDto.class);
-
-        return orderDto;
+    public CreatedOrder callMallon(OrderDto orderDto) {
+        HttpEntity<OrderDto> entity = new HttpEntity<>(new OrderDto());
+        return restTemplate.postForObject(exchangeUrl, entity, CreatedOrder.class);
     }
 }
