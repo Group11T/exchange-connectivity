@@ -6,6 +6,7 @@ import com.io.t11.exchangeconnectivity.service.OrderQueueSubscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
@@ -18,6 +19,9 @@ import redis.clients.jedis.Jedis;
 public class RedisConfig {
 
     @Autowired
+    private Environment env;
+
+    @Autowired
     private RedisConnectionFactory redisConnectionFactory; // redis conn for est conn to redis db
 
     @Bean
@@ -27,7 +31,7 @@ public class RedisConfig {
 
     @Bean
     Jedis jedis(){
-        return new Jedis("localhost");
+        return new Jedis(env.getProperty("spring.redis.host"));
     }
 
     @Bean
