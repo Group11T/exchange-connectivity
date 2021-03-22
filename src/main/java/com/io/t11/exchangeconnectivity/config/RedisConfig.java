@@ -31,6 +31,7 @@ public class RedisConfig {
 
     @Bean
     Jedis jedis(){
+        System.out.println("Got this " + env.getProperty("spring.redis.host"));
         return new Jedis(env.getProperty("spring.redis.host"));
     }
 
