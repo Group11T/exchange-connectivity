@@ -1,20 +1,37 @@
 package com.io.t11.exchangeconnectivity.dto;
 
-public class OrderDto {
-<<<<<<< HEAD
+import javax.persistence.*;
 
-    private String product;
-
-    private int quantity;
-
-    private double price;
-
-=======
+@Entity
+@Table
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String product;
     private int quantity;
     private double price;
->>>>>>> origin/master
     private String side;
+    private String uid;
+
+    public Order(Long id, String product, int quantity, double price, String side, String uid) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.side = side;
+        this.uid = uid;
+    }
+
+    public Order() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getProduct() {
         return product;
@@ -48,14 +65,19 @@ public class OrderDto {
         this.side = side;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "OrderDto{" +
-=======
-        return "OrderModel{" +
->>>>>>> origin/master
-                "product='" + product + '\'' +
+        return "Order{" +
+                "id=" + id +
+                ", product='" + product + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", side='" + side + '\'' +

@@ -18,7 +18,7 @@ import redis.clients.jedis.Jedis;
 public class RedisConfig {
 
     @Autowired
-    private RedisConnectionFactory redisConnectionFactory;
+    private RedisConnectionFactory redisConnectionFactory; // redis conn for est conn to redis db
 
     @Bean
     String queue(){
