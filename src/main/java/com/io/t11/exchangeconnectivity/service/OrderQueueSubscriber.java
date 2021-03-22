@@ -14,10 +14,9 @@ import java.util.List;
 @Component
 public class OrderQueueSubscriber implements CommandLineRunner {
 
-    @Autowired
-    private Environment env;
-
-    private  JedisPool jedisPool = new JedisPool("redis-24456-0.cloudclusters.net", 24456);
+//redis://default:TGYqAObAPjsrZEd5KbDnzBexK5MYWTBS@redis-18040.c257.us-east-1-3.ec2.cloud.redislabs.com:18040
+    private  JedisPool jedisPool = new JedisPool("redis-18040.c257.us-east-1-3.ec2.cloud.redislabs.com", 18040,
+        "default", "TGYqAObAPjsrZEd5KbDnzBexK5MYWTBS");
     private static final String QUEUE = "orderQueue";
     private static final int TIMEOUT = 0;
 
