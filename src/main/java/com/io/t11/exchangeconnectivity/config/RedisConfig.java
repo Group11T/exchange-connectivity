@@ -1,5 +1,7 @@
 package com.io.t11.exchangeconnectivity.config;
 
+import com.io.t11.exchangeconnectivity.service.ExchangeConnectivityPublisher;
+import com.io.t11.exchangeconnectivity.service.IExchangeConnectivityPublisher;
 import com.io.t11.exchangeconnectivity.service.OrderQueueSubscriber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,15 +26,9 @@ public class RedisConfig {
     }
 
     @Bean
-    ChannelTopic topic() {
-        return new ChannelTopic("exchange");
-    }
-
-    @Bean
     Jedis jedis(){
         return new Jedis("localhost");
     }
-
 
     @Bean
     RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
@@ -44,10 +40,9 @@ public class RedisConfig {
 
     //
 
-//    @Bean
-//    ITradePublisher tradeObjectPublisher(){
-//        ChannelTopic publisherTopic=new ChannelTopic("trade-orders");
-//        return new TradePublisher(redisTemplate(redisConnectionFactory),publisherTopic);
-//    }
+    @Bean
+    IExchangeConnectivityPublisher exchangeConnectivityObjectPublisher(){
+        return new ExchangeConnectivityPublisher(redisTemplate(redisConnectionFactory));
+    }
 
 }
