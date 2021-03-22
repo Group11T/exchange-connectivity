@@ -4,15 +4,21 @@ import com.io.t11.exchangeconnectivity.dto.CreatedOrder;
 import com.io.t11.exchangeconnectivity.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
+@PropertySource({"classpath:application.properties"})
 @Component
 public class OrderQueueSubscriber implements CommandLineRunner {
 
-    private static JedisPool jedisPool = new JedisPool("localhost");
+    @Autowired
+    private Environment env;
+
+    private JedisPool jedisPool = new JedisPool(env.getProperty("spring.redis.host"));
     private static final String QUEUE = "orderQueue";
     private static final int TIMEOUT = 0;
 
