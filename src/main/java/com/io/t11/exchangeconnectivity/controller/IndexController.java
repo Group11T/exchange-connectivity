@@ -1,6 +1,6 @@
 package com.io.t11.exchangeconnectivity.controller;
 
-import com.io.t11.exchangeconnectivity.dto.Index;
+import com.io.t11.exchangeconnectivity.model.Index;
 import com.io.t11.exchangeconnectivity.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

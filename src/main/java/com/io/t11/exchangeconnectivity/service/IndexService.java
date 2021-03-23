@@ -1,6 +1,6 @@
 package com.io.t11.exchangeconnectivity.service;
 
-import com.io.t11.exchangeconnectivity.dto.Index;
+import com.io.t11.exchangeconnectivity.model.Index;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

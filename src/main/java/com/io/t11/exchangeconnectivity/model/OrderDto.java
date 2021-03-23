@@ -1,4 +1,4 @@
-package com.io.t11.exchangeconnectivity.dto;
+package com.io.t11.exchangeconnectivity.model;
 
 public class OrderDto {
 
