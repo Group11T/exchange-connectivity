@@ -19,7 +19,7 @@ public class OrderQueueSubscriber implements CommandLineRunner {
     private static Logger logger = LoggerFactory.getLogger((OrderQueueSubscriber.class));
 
     @Autowired
-    private JedisPool jedisPool ;
+    private JedisPool jedisPool;
 
     private static final String QUEUE = "orderQueue";
     private static final int TIMEOUT = 0;
@@ -40,9 +40,9 @@ public class OrderQueueSubscriber implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<String> messages = null;
-        while(true){
+        while (true) {
             System.out.println("Waiting for a message in the queue");
-            messages  = jedisPool.getResource().blpop(TIMEOUT,QUEUE);
+            messages = jedisPool.getResource().blpop(TIMEOUT, QUEUE);
             OrderDto orderDto = convertToOrderDto(messages.get(1));
             String uid = exchangeService.callMallon(orderDto);
             logger.info("client order traded successfully");
@@ -51,7 +51,7 @@ public class OrderQueueSubscriber implements CommandLineRunner {
 
     private OrderDto convertToOrderDto(String message) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         OrderDto orderDto = objectMapper.readValue(message, OrderDto.class);
         return orderDto;
     }
