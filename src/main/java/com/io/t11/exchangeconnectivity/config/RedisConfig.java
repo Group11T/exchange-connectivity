@@ -13,6 +13,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 @Configuration
 public class RedisConfig {
@@ -26,8 +27,8 @@ public class RedisConfig {
     }
 
     @Bean
-    Jedis jedis(){
-        return new Jedis("localhost");
+    JedisPool jedisPool(){
+        return new JedisPool("redis-18040.c257.us-east-1-3.ec2.cloud.redislabs.com",18040, "default","TGYqAObAPjsrZEd5KbDnzBexK5MYWTBS");
     }
 
     @Bean

@@ -18,7 +18,9 @@ public class OrderQueueSubscriber implements CommandLineRunner {
 
     private static Logger logger = LoggerFactory.getLogger((OrderQueueSubscriber.class));
 
-    private static JedisPool jedisPool = new JedisPool("localhost");
+    @Autowired
+    private JedisPool jedisPool ;
+
     private static final String QUEUE = "orderQueue";
     private static final int TIMEOUT = 0;
     private Long createdOrderId;
@@ -29,7 +31,8 @@ public class OrderQueueSubscriber implements CommandLineRunner {
     @Autowired
     IOrderService orderService;
 
-    public OrderQueueSubscriber(ExchangeService exchangeService, IOrderService orderService) {
+    public OrderQueueSubscriber(JedisPool jedisPool, ExchangeService exchangeService, IOrderService orderService) {
+        this.jedisPool = jedisPool;
         this.exchangeService = exchangeService;
         this.orderService = orderService;
     }
