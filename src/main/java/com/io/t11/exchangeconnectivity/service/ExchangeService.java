@@ -16,7 +16,7 @@ public class ExchangeService {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    private String exchangeUrl="/a";
+    private String exchangeUrl="https://exchange.matraining.com/22ad2f56-d075-46c9-9186-fc7d57a1ed6a/order";
 
     @Autowired
     public ExchangeService(CreatedOrderRepository orderRepository) {
