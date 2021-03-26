@@ -5,6 +5,6 @@ import com.io.t11.exchangeconnectivity.model.OrderDto;
 
 public interface IExchangeConnectivityPublisher {
 
-    void publishToRegister(OrderDto orderDto) throws JsonProcessingException;
+    void publishToRecords(OrderDto orderDto) throws JsonProcessingException;
 
 }

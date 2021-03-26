@@ -24,8 +24,8 @@ public class ExchangeConnectivityPublisher implements  IExchangeConnectivityPubl
     }
 
     @Override
-    public void publishToRegister(OrderDto orderDto) throws JsonProcessingException {
-        logger.info("Publishing: {}",orderDto," to register");
+    public void publishToRecords(OrderDto orderDto) throws JsonProcessingException {
+        logger.info("Publishing: {}",orderDto," to records");
         redisTemplate.convertAndSend(registerTopic().getTopic(),orderDto);
     }
 }
