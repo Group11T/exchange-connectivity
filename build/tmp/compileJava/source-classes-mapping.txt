@@ -8,16 +8,16 @@ com/io/t11/exchangeconnectivity/model/OrderDto.java
  com.io.t11.exchangeconnectivity.model.OrderDto
 com/io/t11/exchangeconnectivity/model/StockDto.java
  com.io.t11.exchangeconnectivity.model.StockDto
-com/io/t11/exchangeconnectivity/service/ExchangeConnectivityPublisher.java
- com.io.t11.exchangeconnectivity.service.ExchangeConnectivityPublisher
+com/io/t11/exchangeconnectivity/config/PersistenceConfig.java
+ com.io.t11.exchangeconnectivity.config.PersistenceConfig
 com/io/t11/exchangeconnectivity/model/ExchangeDetails.java
  com.io.t11.exchangeconnectivity.model.ExchangeDetails
 com/io/t11/exchangeconnectivity/ExchangeConnectivityServiceApplication.java
  com.io.t11.exchangeconnectivity.ExchangeConnectivityServiceApplication
+com/io/t11/exchangeconnectivity/service/ExchangeConnectivityPublisher.java
+ com.io.t11.exchangeconnectivity.service.ExchangeConnectivityPublisher
 com/io/t11/exchangeconnectivity/config/RedisConfig.java
  com.io.t11.exchangeconnectivity.config.RedisConfig
-com/io/t11/exchangeconnectivity/config/PersistenceConfig.java
- com.io.t11.exchangeconnectivity.config.PersistenceConfig
 com/io/t11/exchangeconnectivity/service/OrderQueueSubscriber.java
  com.io.t11.exchangeconnectivity.service.OrderQueueSubscriber
 com/io/t11/exchangeconnectivity/controller/ExchangeController.java

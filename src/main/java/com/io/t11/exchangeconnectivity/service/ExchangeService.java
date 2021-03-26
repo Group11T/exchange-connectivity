@@ -52,7 +52,7 @@ public class ExchangeService implements Runnable{
         Integer exchangeQuantity1=orderDto.getExchangeNumber1().get(ExchangeDetails.EXCHANGE_1.getExchangeName());
         Integer exchangeQuantity2=orderDto.getExchangeNumber2().get(ExchangeDetails.EXCHANGE_2.getExchangeName());
 
-        //process to corect exchage
+        //process order to corect exchage
         if(exchangeQuantity1 !=null){
             order.setQuantity(exchangeQuantity1);
             try{
@@ -61,13 +61,14 @@ public class ExchangeService implements Runnable{
                 stockDto.setQuantity(exchangeQuantity1);
                 stockDto.setExchangeName(ExchangeDetails.EXCHANGE_1.getExchangeName());
 //                sendStockToClientConnectivity(stockDto);
+                logger.info("client order traded successfully");
             }
             catch (Exception e){
                 e.printStackTrace();
             }
         }
 
-        else if(exchangeQuantity2 != null){
+        if(exchangeQuantity2 != null){
             order.setQuantity(exchangeQuantity2);
             try{
                 uid = callMallon(order,ExchangeDetails.EXCHANGE_2.getUrl());
@@ -75,17 +76,17 @@ public class ExchangeService implements Runnable{
                 stockDto.setQuantity(exchangeQuantity2);
                 stockDto.setExchangeName(ExchangeDetails.EXCHANGE_2.getExchangeName());
 //                sendStockToClientConnectivity(stockDto);
+                logger.info("client order traded successfully");
             }
             catch (Exception e){
                 e.printStackTrace();
             }
         }
 
-        else{
+        if(exchangeQuantity1 ==null && exchangeQuantity2 == null){
             throw new MalFormedOrderException("The order has no quantity assigned");
         }
 
-        logger.info("client order traded successfully");
         Thread.sleep(1000L);
         return CompletableFuture.completedFuture(uid);
     }
