@@ -9,8 +9,7 @@ public class OrderDto {
     private double price;
     private String side;
     //Map of each exchange and the quantity to trade
-    private Map<String,Integer> exchangeNumber1 = new HashMap<>();
-    private Map<String,Integer> exchangeNumber2 = new HashMap<>();
+    private Map<String,Integer> tradeDetails = new HashMap<>();
 
     public String getProduct() {
         return product;
@@ -36,20 +35,12 @@ public class OrderDto {
         this.side = side;
     }
 
-    public Map<String, Integer> getExchangeNumber1() {
-        return exchangeNumber1;
+    public Map<String, Integer> getTradeDetails() {
+        return tradeDetails;
     }
 
-    public void setExchangeNumber1(Map<String, Integer> exchangeNumber1) {
-        this.exchangeNumber1 = exchangeNumber1;
-    }
-
-    public Map<String, Integer> getExchangeNumber2() {
-        return exchangeNumber2;
-    }
-
-    public void setExchangeNumber2(Map<String, Integer> exchangeNumber2) {
-        this.exchangeNumber2 = exchangeNumber2;
+    public void setTradeDetails(Map<String, Integer> tradeDetails) {
+        this.tradeDetails = tradeDetails;
     }
 
     @Override
@@ -58,8 +49,7 @@ public class OrderDto {
                 "product='" + product + '\'' +
                 ", price=" + price +
                 ", side='" + side + '\'' +
-                ", exchangeNumber1=" + exchangeNumber1 +
-                ", exchangeNumber2=" + exchangeNumber2 +
+                ", tradeDetails=" + tradeDetails +
                 '}';
     }
 }

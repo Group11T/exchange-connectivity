@@ -1,7 +1,7 @@
 package com.io.t11.exchangeconnectivity.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.io.t11.exchangeconnectivity.model.OrderDto;
+import com.io.t11.exchangeconnectivity.model.StockDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ public class ExchangeConnectivityPublisher implements  IExchangeConnectivityPubl
     }
 
     @Override
-    public void publishToRecords(OrderDto orderDto) throws JsonProcessingException {
-        logger.info("Publishing: {}",orderDto," to records");
-        redisTemplate.convertAndSend(registerTopic().getTopic(),orderDto);
+    public void publishToRecords(StockDto stockDto) throws JsonProcessingException {
+        logger.info("Publishing: {}",stockDto," to records");
+        redisTemplate.convertAndSend(registerTopic().getTopic(),stockDto);
     }
 }
