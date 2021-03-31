@@ -47,12 +47,12 @@ public class UtilityService {
         try{
             String uniqueId = callMallon(order,url+"order");
             stockDto.setUniqueId(uniqueId);
-            sendStockToClientConnectivity(stockDto);
-            exchangeConnectivityPublisher.publishToRecords(stockDto);
+//            sendStockToClientConnectivity(stockDto);
+//            exchangeConnectivityPublisher.publishToRecords(stockDto);
             logger.info("client order traded successfully");
         }
         catch (Exception e){
-            e.printStackTrace();
+            logger.error("Unable to connect to complete trade on exchanges",e);
         }
     }
 

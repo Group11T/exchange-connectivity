@@ -67,12 +67,12 @@ public class ExchangeService implements Runnable{
         try {
             checkForMessages();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error("Process interrupted",e);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("Error processing Json",e);
         }
         catch (MalFormedOrderException e){
-            e.printStackTrace();
+            logger.error("order not well formed",e);
         }
     }
 }
