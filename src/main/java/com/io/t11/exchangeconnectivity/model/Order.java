@@ -3,8 +3,11 @@ package com.io.t11.exchangeconnectivity.model;
 public class Order {
 
     private String product;
+
     private int quantity;
+
     private double price;
+
     private String side;
 
     public String getProduct() {

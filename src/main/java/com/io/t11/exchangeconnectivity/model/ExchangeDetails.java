@@ -2,8 +2,8 @@ package com.io.t11.exchangeconnectivity.model;
 
 public enum ExchangeDetails {
 
-    EXCHANGE_1("exchange_1","https://exchange.matraining.com/22ad2f56-d075-46c9-9186-fc7d57a1ed6a/order"),
-    EXCHANGE_2("exchange_2","https://exchange.matraining.com/22ad2f56-d075-46c9-9186-fc7d57a1ed6a/order");
+    EXCHANGE_1("exchange_1","https://exchange.matraining.com/22ad2f56-d075-46c9-9186-fc7d57a1ed6a/"),
+    EXCHANGE_2("exchange_2","https://exchange.matraining.com/22ad2f56-d075-46c9-9186-fc7d57a1ed6a/");
 
     private final String exchangeName;
     private final String url;

@@ -2,75 +2,53 @@ package com.io.t11.exchangeconnectivity.model;
 
 public class StockDto {
 
-    private String product;
+    private Long orderid;
 
-    private int quantity;
+    private String uniqueId;
 
-    private double price;
+    private String exchangeTradedOn;
 
-    private String side;
+    private Long userId;
 
-    private String uid;
-
-    private String exchangeName;
-
-    public String getProduct() {
-        return product;
+    public Long getOrderid() {
+        return orderid;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setOrderid(Long orderid) {
+        this.orderid = orderid;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getUniqueId() {
+        return uniqueId;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
-    public double getPrice() {
-        return price;
+    public String getExchangeTradedOn() {
+        return exchangeTradedOn;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setExchangeTradedOn(String exchangeTradedOn) {
+        this.exchangeTradedOn = exchangeTradedOn;
     }
 
-    public String getSide() {
-        return side;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setSide(String side) {
-        this.side = side;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getExchangeName() {
-        return exchangeName;
-    }
-
-    public void setExchangeName(String exchangeName) {
-        this.exchangeName = exchangeName;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "StockDto{" +
-                "product='" + product + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", side='" + side + '\'' +
-                ", uid='" + uid + '\'' +
-                ", exchangeNumber='" + exchangeName + '\'' +
+                "orderid=" + orderid +
+                ", uniqueId='" + uniqueId + '\'' +
+                ", exchangeTradedOn='" + exchangeTradedOn + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }

@@ -41,20 +41,19 @@ public class ExchangeService implements Runnable{
         Order order = utilityService.convertToOrder(orderDto);
         StockDto stockDto = utilityService.convertToStock(orderDto);
 
-        Integer exchangeQuantity1=orderDto.getTradeDetails().get(ExchangeDetails.EXCHANGE_1.getExchangeName());
-        Integer exchangeQuantity2=orderDto.getTradeDetails().get(ExchangeDetails.EXCHANGE_2.getExchangeName());
-        System.out.println(exchangeQuantity1);
-        System.out.println(exchangeQuantity2);
-        //process order to corect exchage
-        if(exchangeQuantity1 !=null){
+        Integer exchangeQuantity1= orderDto.getTradeDetails().get(ExchangeDetails.EXCHANGE_1.getExchangeName());
+        Integer exchangeQuantity2= orderDto.getTradeDetails().get(ExchangeDetails.EXCHANGE_2.getExchangeName());
+
+        //process order to correct exchange
+        if(exchangeQuantity1 > 0){
             utilityService.tradeOnExchange1(order,stockDto,exchangeQuantity1);
         }
 
-        if(exchangeQuantity2 != null){
+        if(exchangeQuantity2 > 0){
            utilityService.tradeOnExchange2(order,stockDto,exchangeQuantity2);
         }
 
-        if(exchangeQuantity1 ==null && exchangeQuantity2 == null){
+        if(exchangeQuantity1 ==0 && exchangeQuantity2 == 0){
             throw new MalFormedOrderException("The order has no quantity assigned");
         }
 

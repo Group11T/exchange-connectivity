@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class UtilityService {
 
@@ -22,36 +24,30 @@ public class UtilityService {
     @Autowired
     IExchangeConnectivityPublisher exchangeConnectivityPublisher;
 
-    public UtilityService(RestTemplate restTemplate, IExchangeConnectivityPublisher exchangeConnectivityPublisher, String uid) {
+    public UtilityService(RestTemplate restTemplate, IExchangeConnectivityPublisher exchangeConnectivityPublisher) {
         this.restTemplate = restTemplate;
         this.exchangeConnectivityPublisher = exchangeConnectivityPublisher;
-        this.uid = uid;
     }
 
     private static Logger logger = LoggerFactory.getLogger((UtilityService.class));
-    String uid = null;
-    private final String clientUrl = "";
-
 
     public void tradeOnExchange1(Order order,StockDto stockDto, int quantity){
         order.setQuantity(quantity);
-        stockDto.setQuantity(quantity);
-        stockDto.setExchangeName(ExchangeDetails.EXCHANGE_1.getExchangeName());
+        stockDto.setExchangeTradedOn(ExchangeDetails.EXCHANGE_1.getUrl());
         tradeStep(order,stockDto,ExchangeDetails.EXCHANGE_1.getUrl());
     }
 
     public void tradeOnExchange2(Order order,StockDto stockDto, int quantity){
         order.setQuantity(quantity);
-        stockDto.setQuantity(quantity);
-        stockDto.setExchangeName(ExchangeDetails.EXCHANGE_2.getExchangeName());
+        stockDto.setExchangeTradedOn(ExchangeDetails.EXCHANGE_2.getUrl());
         tradeStep(order,stockDto,ExchangeDetails.EXCHANGE_2.getUrl());
     }
 
     public void tradeStep(Order order, StockDto stockDto, String url){
         try{
-            uid = callMallon(order,url);
-            stockDto.setUid(uid);
-//          sendStockToClientConnectivity(stockDto);
+            String uniqueId = callMallon(order,url+"order");
+            stockDto.setUniqueId(uniqueId);
+            sendStockToClientConnectivity(stockDto);
             exchangeConnectivityPublisher.publishToRecords(stockDto);
             logger.info("client order traded successfully");
         }
@@ -64,8 +60,11 @@ public class UtilityService {
         return restTemplate.postForObject(mallonUrl, order, String.class);
     }
 
-    public String sendStockToClientConnectivity(StockDto stockDto){
-        return restTemplate.postForObject(clientUrl,stockDto,String.class);
+    public List sendStockToClientConnectivity(StockDto stockDto){
+        String baseUrl = "http://localhost:8091/portfolio/add/";
+        String attachedUrl = stockDto.getUniqueId() + "/"+ stockDto.getUserId();
+        final String clientUrl = baseUrl+attachedUrl;
+        return restTemplate.postForObject(clientUrl,stockDto,List.class);
     }
 
     public OrderDto convertToOrderDto(String message) throws JsonProcessingException {
@@ -85,9 +84,8 @@ public class UtilityService {
 
     public StockDto convertToStock(OrderDto orderDto){
         StockDto stockDto = new StockDto();
-        stockDto.setPrice(orderDto.getPrice());
-        stockDto.setProduct(orderDto.getProduct());
-        stockDto.setSide(orderDto.getSide());
+        stockDto.setOrderid(orderDto.getOrderId());
+        stockDto.setUserId(orderDto.getUserId());
         return stockDto;
     }
 }
